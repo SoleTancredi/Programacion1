@@ -29,7 +29,7 @@ int main(void) {
 	scanf("%d",&num1);
 	printf("Enter the second number: ");
 	scanf("%d",&num2);
-	printf("Perfect! Now enter the operation what do you want you.\n In case the use: A) Sum '1'\n B) Subtraction '2'\n C) Multiplication '3'\n D) Division '4'");
+	printf("Perfect! Choose your option below:\n A) Sum '1'\n B) Subtraction '2'\n C) Multiplication '3'\n D) Division '4'");
 	scanf("%d",&answer);
 
 	switch(answer)
