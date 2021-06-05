@@ -13,7 +13,7 @@ EJERCICIO:
 int function_add(int num1, int num2);
 int function_subtraction(int num1, int num2);
 int function_multiplication(int num1, int num2);
-int function_division(int num1, int num2);
+int function_division(int num1, int num2, float* cajita_de_direcciones);
 
 int main(void) {
 
@@ -22,6 +22,8 @@ int main(void) {
 	int answer;
 	int answer_operation;
 	int follow;
+	int returnisDivision;
+	float resultadoDivision;
 
 	do
 	{
@@ -48,18 +50,16 @@ int main(void) {
 		break;
 
 	case 4:
-		if(num1 == 0 || num2  == 0)
+
+		returnisDivision = function_division (num1, num2, &resultadoDivision);
+		if(returnisDivision == 1)
 		{
-	      puts("NO! Can not be divided by 0");
-		  printf("Welcome! Enter the first number: ");
-		  scanf("%d",&num1);
-		  printf("Enter the second number: ");
-		  scanf("%d",&num2);
-		  printf("Perfect! Now enter the operation what do you want you.\n In case the use Sum '1'\n Subtraction '2'\n Multiplication '3'\n Division'4'");
-	      scanf("%d",&answer);
+			printf("Error! Ingrese un divisor mayor y distinto a 0");
 		}
-		answer_operation = function_division (num1, num2);
-		printf("Perfect! The result of division is: %d\n", answer_operation);
+		else
+		{
+			printf("Perfect! The result of division is: %f\n",resultadoDivision);
+		}
 		break;
 	}
 
@@ -92,10 +92,25 @@ int function_multiplication(int num1, int num2)
 
 	return multiplication;
 }
-int function_division(int num1, int num2)
+/* Retorna 1 en caso de que la funcion no halla corrido correctamente o retorna 0 en caso de exito!
+ * Es una validacion de la funcion!
+ * */
+int function_division(int num1, int num2,float* cajita_de_direcciones)
 {
-	int division;
-	division = num1 / num2;
+	int returnis;
+	float division;
 
-	return division;
+	if(num2 == 0 || num2 < 0)
+	{
+		returnis = 1;
+	}
+	else
+	{
+		division = (float)num1 / num2;
+		*cajita_de_direcciones = division;
+
+		returnis = 0;
+	}
+
+	return returnis;
 }
